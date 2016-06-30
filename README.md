@@ -1,0 +1,1 @@
+# purehack_intellij
