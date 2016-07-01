@@ -25,7 +25,6 @@ public abstract class Drawable implements DrawableInterface{
             return new DrawableList(convertToArrayList((Object[]) o), border);
         }
         else {
-            System.out.println("I'm not iterable.");
             return Drawable.toDrawable(o);
         }
     }
@@ -43,5 +42,9 @@ public abstract class Drawable implements DrawableInterface{
         Integer[] lulz2 = {1, 2, 3};
         toDrawable(lulz).draw(0.4,0.4);
         toDrawable(lulz2, 1).draw(0.5,0.5);
+
+        // THIS DOESN'T WORK:
+//        int[] yo = {1, 2, 4};
+//        toDrawable(yo, 3).draw(0.7,0.4);
     }
 }
