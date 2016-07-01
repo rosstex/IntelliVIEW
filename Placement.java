@@ -4,12 +4,6 @@
 
 import java.util.*;
 
-// For examples only:
-
-
-// When x reaches 512,
-// moving_y = max_y = max_y + EXTERNAL_BORDER
-
 public class Placement {
     Set watched;
 
@@ -131,6 +125,12 @@ public class Placement {
 
         woo.add(vehicles);
 
+
+        Queue myQueue = new ArrayDeque();
+        myQueue.offer("Monday");
+        myQueue.offer("Thusday");
+        myQueue.offer("Wednesday");
+        woo.add(myQueue);
 
         Placement p = new Placement(woo);
         p.draw();

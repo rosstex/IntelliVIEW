@@ -3,10 +3,7 @@
  */
 import groovy.util.MapEntry;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-
+import java.util.*;
 
 // Currently, can draw Lists and Arrays, and can otherwise convert things toString and draw their Strings.
 // More complicated data structures perhaps could be better displayed by graphviz and the like...
@@ -31,6 +28,10 @@ public abstract class Drawable implements DrawableInterface{
             return new DrawableMapEntry((Map.Entry) o, border);
         } else if (o instanceof Map) {
             return new DrawableList(new ArrayList<Map.Entry>(((Map) o).entrySet()), border);
+        } else if (o instanceof Set) {
+            return new DrawableSet((Set) o, border);
+        } else if (o instanceof Queue) {
+            return new DrawableList(new ArrayList((Queue) o), border);
         } else if (o instanceof Object[]) {
             return new DrawableList(convertToArrayList((Object[]) o), border);
         }
