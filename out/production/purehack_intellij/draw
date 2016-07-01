@@ -1,6 +1,5 @@
 rm -rf *.class
-mkdir -p jar
 javac -classpath ".:/Users/rteixeira/javalib/*" *.java
 rm -f hi.jar
 jar cmf MANIFEST.MF hi.jar Agent*.class
-java -javaagent:/Users/rteixeira/purehack_intellij/hi.jar $1 
+java -Xbootclasspath/p:. -javaagent:/Users/rteixeira/purehack_intellij/hi.jar $1
