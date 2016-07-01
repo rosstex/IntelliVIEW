@@ -2,30 +2,69 @@
  * Created by swathugala on 6/30/16.
  */
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
-public class Placement {
+public class DrawerHelper {
     Set watched;
 
-    // Set by private variables StdDraw.width and StdDraw.height
-    // Tempted to change StdDraw to make these adjustable.
+    // Change these if you want.
     int SCREEN_END_x = 502;
-    int SCREEN_END_y = 600;
+    int SCREEN_END_y = 502;
 
     int INTERNAL_BORDER = 2;
     int EXTERNAL_BORDER = 10;
+
+    boolean sizeChanged = false;
 
     int moving_x;
     int moving_y;
     int max_height;
 
-    public Placement(Set watched) {
+    public DrawerHelper(Set watched) {
         this.watched = watched;
+    }
+/*
+    public DrawerHelper(Set watched, int width, int height, int internalBorder, int externalBorder) {
+        this(watched);
+        INTERNAL_BORDER = internalBorder;
+        EXTERNAL_BORDER = externalBorder;
+        SCREEN_END_x = width - EXTERNAL_BORDER;
+        SCREEN_END_y = height - EXTERNAL_BORDER;
+    }*/
+
+    public void setBorders(int externalBorder, int internalBorder) {
+        SCREEN_END_x += EXTERNAL_BORDER - externalBorder;
+        SCREEN_END_y += EXTERNAL_BORDER - externalBorder;
+        INTERNAL_BORDER = internalBorder;
+        EXTERNAL_BORDER = externalBorder;
+    }
+
+    public int getWidth() {
+        return SCREEN_END_x + EXTERNAL_BORDER;
+    }
+    public int getHeight() {
+        return SCREEN_END_y + EXTERNAL_BORDER;
+    }
+
+    public void setCanvasSize(int width, int height) {
+
+        SCREEN_END_x = width - EXTERNAL_BORDER;
+        SCREEN_END_y = height - EXTERNAL_BORDER;
+        sizeChanged = true;
     }
 
     public void draw() {
 
-        StdDraw.setCanvasSize(SCREEN_END_x + EXTERNAL_BORDER, SCREEN_END_y + EXTERNAL_BORDER);
+        if (sizeChanged) {
+            StdDraw.setCanvasSize(getWidth(), getHeight());
+            sizeChanged = false;
+        }
+
+        StdDraw.setPenColor(Color.white);
+        StdDraw.filledRectangle(0.5, 0.5, getWidth(), getHeight());
+        StdDraw.setPenColor(Color.black);
 
         this.moving_x = EXTERNAL_BORDER;
         this.moving_y = EXTERNAL_BORDER;
@@ -33,6 +72,7 @@ public class Placement {
         for (Object o : watched) {
             draw(o);
         }
+        StdDraw.show(1000);
     }
 
     private boolean draw(Object o) {
@@ -92,7 +132,33 @@ public class Placement {
         boolean lulz = true;
         Integer[] lulz2 = {1, 2, 3};
 
+        ArrayList<Object> big = new ArrayList<>();
+        big.add(w);
+        big.add(lulz);
+        big.add(lulz2);
+        big.add("Hello world");
+        big.add('!');
+
+        HashSet set = new HashSet<Integer>();
+        set.add("Hey");
+        set.add("Jude");
+
+        Map vehicles = new HashMap();
+        vehicles.put("BMW", 5);
+        vehicles.put("Mercedes", 3);
+        vehicles.put("Audi", 4);
+        vehicles.put("Ford", 10);
+        vehicles.put(lulz2, set);
+
+        Queue myQueue = new ArrayDeque();
+        myQueue.offer("Monday");
+        myQueue.offer("Thursday");
+        myQueue.offer("Wednesday");
+
         HashSet woo = new HashSet();
+
+        woo.add(set);
+
         woo.add(al);
         woo.add(ll);
         woo.add(s);
@@ -102,40 +168,17 @@ public class Placement {
         woo.add("Hello world");
         woo.add('!');
 
-        ArrayList<Object> big = new ArrayList<>();
-        big.add(w);
-        big.add(lulz);
-        big.add(lulz2);
-        big.add("Hello world");
-        big.add('!');
         woo.add(big);
 
-        HashSet set = new HashSet<Integer>();
-        set.add("Hey");
-        set.add("Jude");
-        woo.add(set);
-
-
-        Map vehicles = new HashMap();
-        vehicles.put("BMW", 5);
-        vehicles.put("Mercedes", 3);
-        vehicles.put("Audi", 4);
-        vehicles.put("Ford", 10);
-        vehicles.put(lulz2, set);
+        woo.add(myQueue);
 
         woo.add(vehicles);
 
-
-        Queue myQueue = new ArrayDeque();
-        myQueue.offer("Monday");
-        myQueue.offer("Thusday");
-        myQueue.offer("Wednesday");
-        woo.add(myQueue);
-
-        Placement p = new Placement(woo);
+        DrawerHelper p = new DrawerHelper(woo);
         p.draw();
 
-//        System.out.println("Total vehicles: " + vehicles.size());
-
+        p.setBorders(20, 4);
+        p.setCanvasSize(600, 600);
+        p.draw();
     }
 }
