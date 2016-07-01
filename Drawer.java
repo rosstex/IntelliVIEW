@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -39,6 +40,13 @@ public class Drawer {
 
     public static void main(String[] args) {
 
+
+        ArrayList a = new ArrayList();
+        for (int i = 0; i < 5; i++) {
+            a.add(i);
+        }
+        /*
+
         ArrayList<Integer> al = new ArrayList<Integer>();
         LinkedList<Integer> ll = new LinkedList<Integer>() ;
         Stack<Integer> s = new Stack<Integer>();
@@ -67,12 +75,12 @@ public class Drawer {
         set.add("Hey");
         set.add("Jude");
 
-        Map vehicles = new HashMap();
+        Map vehicles = new TreeMap();
         vehicles.put("BMW", 5);
         vehicles.put("Mercedes", 3);
         vehicles.put("Audi", 4);
         vehicles.put("Ford", 10);
-        vehicles.put(lulz2, set);
+//        vehicles.put(lulz2, set);
 
         Queue myQueue = new ArrayDeque();
         myQueue.offer("Monday");
@@ -96,10 +104,10 @@ public class Drawer {
 
         woo.add(myQueue);
 
-        woo.add(vehicles);
+        woo.add(vehicles);*/
 
-        for (Object hm : woo) {
-            watch(hm);
-        }
+//        for (Object hm : woo) {
+//            watch(hm);
+//        }
     }
 }
