@@ -21,8 +21,7 @@ public class DrawableList extends Drawable {
         height = 0;
         width = 0;
         for (Object o : list) {
-            Drawable d = Drawable.toDrawable(o, border);
-            Box b = new Box(d, border);
+            Box b = new Box(o, border);
             boxes.put(b, width);
             width += b.getWidth();
             height = Double.max(height, b.getHeight());
@@ -38,7 +37,9 @@ public class DrawableList extends Drawable {
 
     public boolean draw(double x, double y) {
         for (Map.Entry<Box, Double> entry : boxes.entrySet()) {
-            entry.getKey().draw(x + entry.getValue(), y);
+            Box b = entry.getKey();
+            b.resetHeight(height);
+            b.draw(x + entry.getValue(), y);
         }
         return true;
     }

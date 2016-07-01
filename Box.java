@@ -9,13 +9,30 @@ class Box extends Drawable {
         double width;
         double border;
 
-        public Box(Drawable d, int border) {
+        public Box(Object o, int border) {
+            this(Drawable.toDrawable(o, border), border);
+        }
+
+
+        private Box(Drawable d, int border) {
             this.ant = d;
             double extra = ( 2 * border ) / 512.0;
             this.height = ant.getHeight() + extra;
             this.width = ant.getWidth() + extra;
 
             this.border = border / 512.0;
+        }
+
+        // For use in lists!
+        public void resetHeight(double newHeight) {
+            assert newHeight >= height;
+            height = newHeight;
+        }
+
+        // For use in maps!
+        public void resetWidth(double newWidth) {
+            assert newWidth >= width;
+            width = newWidth;
         }
 
         public double getHeight() {
@@ -45,13 +62,13 @@ class Box extends Drawable {
             test.draw(0.3,0.2);
             test = new Box(new DrawableString("world"), 10);
             test.draw(0.2,0.5);
-            test = new Box(Drawable.toDrawable(3), 10);
+            test = new Box((3), 10);
             test.draw(0.1,0.5);
 
-            test = new Box(Drawable.toDrawable(3), 10);
+            test = new Box((3), 10);
             test.draw(0,0);
 
-            test = new Box(Drawable.toDrawable('!'), 22);
+            test = new Box(('!'), 22);
             test.draw(0.9,0.9);
         }
 

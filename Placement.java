@@ -2,14 +2,10 @@
  * Created by swathugala on 6/30/16.
  */
 
-import java.util.Set;
+import java.util.*;
 
 // For examples only:
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Stack;
-import java.util.List;
-import java.util.HashSet;
+
 
 // When x reaches 512,
 // moving_y = max_y = max_y + EXTERNAL_BORDER
@@ -19,8 +15,8 @@ public class Placement {
 
     // Set by private variables StdDraw.width and StdDraw.height
     // Tempted to change StdDraw to make these adjustable.
-    int SCREEN_END_x = 512;
-    int SCREEN_END_y = 512;
+    int SCREEN_END_x = 502;
+    int SCREEN_END_y = 600;
 
     int INTERNAL_BORDER = 2;
     int EXTERNAL_BORDER = 10;
@@ -34,6 +30,9 @@ public class Placement {
     }
 
     public void draw() {
+
+        StdDraw.setCanvasSize(SCREEN_END_x + EXTERNAL_BORDER, SCREEN_END_y + EXTERNAL_BORDER);
+
         this.moving_x = EXTERNAL_BORDER;
         this.moving_y = EXTERNAL_BORDER;
         this.max_height = 0;
@@ -43,6 +42,7 @@ public class Placement {
     }
 
     private boolean draw(Object o) {
+
         Drawable d = Drawable.toDrawable(o, INTERNAL_BORDER);
         int pixelWidth = toPixels(d.getWidth());
         int pixelHeight = toPixels(d.getHeight());
@@ -79,6 +79,8 @@ public class Placement {
     }
 
     public static void main(String[] args) {
+
+
         ArrayList<Integer> al = new ArrayList<Integer>();
         LinkedList<Integer> ll = new LinkedList<Integer>() ;
         Stack<Integer> s = new Stack<Integer>();
@@ -106,8 +108,34 @@ public class Placement {
         woo.add("Hello world");
         woo.add('!');
 
+        ArrayList<Object> big = new ArrayList<>();
+        big.add(w);
+        big.add(lulz);
+        big.add(lulz2);
+        big.add("Hello world");
+        big.add('!');
+        woo.add(big);
+
+        HashSet set = new HashSet<Integer>();
+        set.add("Hey");
+        set.add("Jude");
+        woo.add(set);
+
+
+        Map vehicles = new HashMap();
+        vehicles.put("BMW", 5);
+        vehicles.put("Mercedes", 3);
+        vehicles.put("Audi", 4);
+        vehicles.put("Ford", 10);
+        vehicles.put(lulz2, set);
+
+        woo.add(vehicles);
+
+
         Placement p = new Placement(woo);
         p.draw();
+
+//        System.out.println("Total vehicles: " + vehicles.size());
 
     }
 }
