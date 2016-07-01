@@ -21,7 +21,8 @@ public abstract class Drawable implements DrawableInterface{
     public static Drawable toDrawable(Object o, int border) {
         if (o instanceof List) {
             return Drawable.toDrawable((List) o, border);
-        } else if (o.getClass().isArray()) {
+//        } else if (o.getClass().isArray()) {
+        } else if (o instanceof Object[]) {
             return new DrawableList(convertToArrayList((Object[]) o), border);
         }
         else {
@@ -43,8 +44,12 @@ public abstract class Drawable implements DrawableInterface{
         toDrawable(lulz).draw(0.4,0.4);
         toDrawable(lulz2, 1).draw(0.5,0.5);
 
-        // THIS DOESN'T WORK:
-//        int[] yo = {1, 2, 4};
-//        toDrawable(yo, 3).draw(0.7,0.4);
+        // So far I can't figure out how to make this work because
+        // 0) even though o.getClass().isArray() returns true, I
+        // 1) can't cast int[] as Object[]
+        // 2) can't cast int[] as Iterable
+        // 3) can't iterate through something that isn't iterable.
+        int[] yo = {1, 2, 4};
+        toDrawable(yo, 3).draw(0.7,0.4);
     }
 }
